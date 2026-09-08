@@ -1,0 +1,17 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+        mavenCentral()
+    }
+}
+
+dependencyResolutionManagement {
+    repositories {
+        maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+        maven { url = 'https://raw.githubusercontent.com/Shopkeepers/Repository/main/releases/' }
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'shopkeeperleaderboard'

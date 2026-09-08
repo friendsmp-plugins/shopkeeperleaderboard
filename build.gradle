@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.centers25'
+version = '1.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(26)
+    }
+}
+
+repositories {
+    maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+    maven { url = 'https://raw.githubusercontent.com/Shopkeepers/Repository/main/releases/' }
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'io.papermc.paper:paper-api:26.2.build.112-stable'
+    compileOnly 'com.nisovin.shopkeepers:ShopkeepersAPI:2.27.0'
+    compileOnly files('libs/plugincore-api.jar')
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 26
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('plugin.yml') {
+        expand(version: project.version)
+    }
+}
+
+tasks.named('jar') {
+    archiveFileName = 'shopkeeperleaderboard.jar'
+}

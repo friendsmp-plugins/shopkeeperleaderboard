@@ -1,0 +1,19 @@
+name: shopkeeperleaderboard
+version: '${version}'
+main: com.centers25.shopkeeperleaderboard.ShopkeeperLeaderboardPlugin
+api-version: '26.2'
+author: centers25
+description: Tracks Shopkeepers seller leaderboards.
+depend: [plugincore, Shopkeepers]
+commands:
+  leaderboard:
+    description: Opens the seller leaderboard.
+    usage: /leaderboard [diamonds|trades]
+  leaderboardadmin:
+    description: Manages seller leaderboard statistics.
+    usage: /leaderboardadmin <clear|reduce|clearall> ...
+    permission: shopkeeperleaderboard.admin
+permissions:
+  shopkeeperleaderboard.admin:
+    description: Allows managing seller leaderboard statistics.
+    default: op

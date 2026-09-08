@@ -1,0 +1,5 @@
+autosave-seconds: 300
+
+currency-values:
+  DIAMOND: 1
+  DIAMOND_BLOCK: 9
