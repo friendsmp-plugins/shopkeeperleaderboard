@@ -1,3 +1,7 @@
+# Calendar periods reset at midnight in this timezone. Weeks begin on Monday.
+# Existing lifetime totals remain intact; period tracking starts after upgrade.
+period-timezone: UTC
+
 autosave-seconds: 300
 
 currency-values:

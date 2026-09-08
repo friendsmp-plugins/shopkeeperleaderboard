@@ -8,10 +8,11 @@ depend: [plugincore, Shopkeepers]
 commands:
   leaderboard:
     description: Opens the seller leaderboard.
-    usage: /leaderboard [diamonds|trades]
+    usage: /leaderboard [diamonds|trades] [alltime|weekly|monthly]
   leaderboardadmin:
-    description: Manages seller leaderboard statistics.
-    usage: /leaderboardadmin <clear|reduce|clearall> ...
+    aliases: [lbadmin]
+    description: Opens administration or manages seller statistics.
+    usage: /leaderboardadmin [clear|reduce|clearall] ...
     permission: shopkeeperleaderboard.admin
 permissions:
   shopkeeperleaderboard.admin:

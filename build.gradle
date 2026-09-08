@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.centers25'
-version = '1.0.0'
+version = '1.1.0'
 
 java {
     toolchain {
@@ -21,6 +21,9 @@ dependencies {
     compileOnly 'io.papermc.paper:paper-api:26.2.build.112-stable'
     compileOnly 'com.nisovin.shopkeepers:ShopkeepersAPI:2.27.0'
     compileOnly files('libs/plugincore-api.jar')
+    testImplementation 'io.papermc.paper:paper-api:26.2.build.112-stable'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -38,3 +41,5 @@ processResources {
 tasks.named('jar') {
     archiveFileName = 'shopkeeperleaderboard.jar'
 }
+
+test { useJUnitPlatform() }

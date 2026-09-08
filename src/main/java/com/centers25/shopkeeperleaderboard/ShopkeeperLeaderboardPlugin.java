@@ -20,7 +20,13 @@ public final class ShopkeeperLeaderboardPlugin extends JavaPlugin {
     public void onEnable() {
         log = PluginLogs.get(this);
         saveDefaultConfig();
-        repository = new StatsRepository(this);
+        try {
+            repository = new StatsRepository(this);
+        } catch (java.time.DateTimeException error) {
+            log.error("Invalid period-timezone in config.yml: " + error.getMessage());
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
         repository.load();
         PluginBackups.get(this).register(this);
         Map<Material, Long> currencyValues = loadCurrencyValues();
@@ -29,12 +35,12 @@ public final class ShopkeeperLeaderboardPlugin extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
-        LeaderboardMenu menu = new LeaderboardMenu(repository);
+        LeaderboardMenu menu = new LeaderboardMenu(this, repository);
         LeaderboardCommand leaderboardCommand = new LeaderboardCommand(menu);
         PluginCommand leaderboard = Objects.requireNonNull(getCommand("leaderboard"));
         leaderboard.setExecutor(leaderboardCommand);
         leaderboard.setTabCompleter(leaderboardCommand);
-        LeaderboardAdminCommand adminCommand = new LeaderboardAdminCommand(repository);
+        LeaderboardAdminCommand adminCommand = new LeaderboardAdminCommand(this, repository, menu);
         PluginCommand admin = Objects.requireNonNull(getCommand("leaderboardadmin"));
         admin.setExecutor(adminCommand);
         admin.setTabCompleter(adminCommand);
